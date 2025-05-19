@@ -4,7 +4,7 @@
     {
       "uuid": "f1e975df-08dc-4516-b120-260dd0f2c840",
       "@type": "WorkflowCollection",
-      "name": "Sample - Aruba ClearPass - 1.1.0",
+      "name": "Sample - Aruba ClearPass - 1.2.0",
       "description": "Aruba ClearPass is a policy management platform that enables businesses to effortlessly onboard new devices, grant varying access levels, and keep their networks secure. Aruba ClearPass connector performs actions like list guest and guest details, list endpoints and endpoint details etc.",
       "visible": true,
       "image": null,
@@ -68,7 +68,7 @@
                 "name": "Aruba ClearPass",
                 "config": "",
                 "params": [],
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "list_guests",
                 "operationTitle": "Get List of Guests",
@@ -150,7 +150,7 @@
                 "params": {
                   "guest_id": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "get_guest_details",
                 "operationTitle": "Get Guest Details",
@@ -230,7 +230,7 @@
                 "name": "Aruba ClearPass",
                 "config": "",
                 "params": [],
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "list_endpoints",
                 "operationTitle": "List Endpoint",
@@ -312,7 +312,7 @@
                 "params": {
                   "endpoint_id": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "get_endpoint_details",
                 "operationTitle": "Get Endpoint Detail",
@@ -396,7 +396,7 @@
                   "endpoint_id": "",
                   "description": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "update_endpoint_status",
                 "operationTitle": "Update Endpoint Status",
@@ -478,7 +478,7 @@
                 "params": {
                   "filter": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "list_sessions",
                 "operationTitle": "List Sessions",
@@ -560,7 +560,7 @@
                 "params": {
                   "session_id": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "terminate_session",
                 "operationTitle": "Terminate Sessions",
@@ -642,7 +642,7 @@
                 "params": {
                   "mac_address": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "disable_device",
                 "operationTitle": "Disable Device",
@@ -725,7 +725,7 @@
                   "mac_address": "",
                   "coa_profile": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "session_coa_mac",
                 "operationTitle": "Send Session COA by MAC",
@@ -807,7 +807,7 @@
                 "params": {
                   "mac_or_ip": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "aruba-clearpass",
                 "operation": "get_device_profile",
                 "operationTitle": "Get Device Profile",
@@ -830,6 +830,321 @@
               "sourceStep": "/api/3/workflow_steps/8ed652ae-17db-4bbf-8be3-dfff5a8e01c9",
               "targetStep": "/api/3/workflow_steps/42742950-0ad7-4251-a585-67f3ba814e29"
             }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Block Endpoint",
+          "aliasName": null,
+          "tag": "#Aruba ClearPass",
+          "description": "Block the endpoint based on the provided MAC address by setting the 'blacklisted' attribute to true.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1747386602,
+          "collection": "/api/3/workflow_collections/f1e975df-08dc-4516-b120-260dd0f2c840",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/77456fcc-6dcf-49f8-aa16-c2618c797e5f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Block Endpoint",
+              "description": null,
+              "arguments": {
+                "name": "Aruba ClearPass",
+                "config": "test",
+                "params": {
+                  "mac_adress": "2D-5D-0D-38-2C-8A"
+                },
+                "version": "1.2.0",
+                "connector": "aruba-clearpass",
+                "operation": "block_endpoint",
+                "operationTitle": "Block Endpoint",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "8dfe8382-c107-44d6-8d75-d0f34b57b283"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "ab4e076b-b6d6-446f-8dda-0d227da9e6f2",
+                "title": "Aruba ClearPass: Block Endpoint",
+                "resources": [
+                  "alerts"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "77456fcc-6dcf-49f8-aa16-c2618c797e5f"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Device Profile",
+              "targetStep": "/api/3/workflow_steps/8dfe8382-c107-44d6-8d75-d0f34b57b283",
+              "sourceStep": "/api/3/workflow_steps/77456fcc-6dcf-49f8-aa16-c2618c797e5f",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "ab933605-d297-4b1e-a883-a8af7e8ef68e"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "dd93ca25-e57e-4d1a-9e9c-4c70be61f8b5",
+          "id": 3596,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Aruba",
+            "aruba-clearpass"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Endpoint Details by MAC Address",
+          "aliasName": null,
+          "tag": "#Aruba ClearPass",
+          "description": "Get detailed information about a specific endpoint by providing its MAC address.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1747386518,
+          "collection": "/api/3/workflow_collections/f1e975df-08dc-4516-b120-260dd0f2c840",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/70bf2e93-4be1-4735-875e-11a505d03692",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Endpoint Details by MAC Address",
+              "description": null,
+              "arguments": {
+                "name": "Aruba ClearPass",
+                "config": "test",
+                "params": {
+                  "mac_address": "2D-5D-0D-38-2C-8A"
+                },
+                "version": "1.2.0",
+                "connector": "aruba-clearpass",
+                "operation": "get_endpoint_details_by_macaddress",
+                "operationTitle": "Get Endpoint Details by MAC Address",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "91ac0686-5eb0-4e2b-8b01-4f2801c81103"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a6965464-8c29-4830-b107-4ccd179fa376",
+                "title": "Aruba ClearPass: Get Endpoint Details by MAC Address",
+                "resources": [
+                  "alerts"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "70bf2e93-4be1-4735-875e-11a505d03692"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Device Profile",
+              "targetStep": "/api/3/workflow_steps/91ac0686-5eb0-4e2b-8b01-4f2801c81103",
+              "sourceStep": "/api/3/workflow_steps/70bf2e93-4be1-4735-875e-11a505d03692",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "c518cbd8-0d15-4528-aff2-23e8076acfc4"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "438edae0-f9cf-49b8-a94c-f34cebe62382",
+          "id": 3595,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Aruba",
+            "aruba-clearpass"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Execute an API Request",
+          "aliasName": null,
+          "tag": "#Aruba ClearPass",
+          "description": "Execute any Aruba ClearPass API using the specified API method, endpoint, and payload as input parameters.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1747391085,
+          "collection": "/api/3/workflow_collections/f1e975df-08dc-4516-b120-260dd0f2c840",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/91d4580b-12b7-40c6-872d-d66ebf314477",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Execute an API Request",
+              "description": null,
+              "arguments": {
+                "name": "Aruba ClearPass",
+                "config": "test",
+                "params": {
+                  "method": "GET",
+                  "payload": "",
+                  "endpoint": "/api/guest",
+                  "Query Parameters": ""
+                },
+                "version": "1.2.0",
+                "connector": "aruba-clearpass",
+                "operation": "execute_api_request",
+                "operationTitle": "Execute an API Request",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "f00a55f0-89c8-40cf-b186-4f071851fd44"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "df4aa669-3855-4782-a065-4b7b39b2c0e4",
+                "title": "Aruba ClearPass: Execute an API Request",
+                "resources": [
+                  "alerts"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "91d4580b-12b7-40c6-872d-d66ebf314477"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Device Profile",
+              "targetStep": "/api/3/workflow_steps/f00a55f0-89c8-40cf-b186-4f071851fd44",
+              "sourceStep": "/api/3/workflow_steps/91d4580b-12b7-40c6-872d-d66ebf314477",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "bfc66dc0-6806-4010-a6b7-9323de2a0b5c"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "287c92f8-a1cf-4ce9-86eb-35f2c338d87a",
+          "id": 3609,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Aruba",
+            "aruba-clearpass"
           ]
         }
       ]

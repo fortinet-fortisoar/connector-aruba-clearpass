@@ -1,5 +1,5 @@
 """Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
+  Copyright (C) 2008 - 2025 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end"""
@@ -195,6 +195,41 @@ def session_coa_mac(config, params, connector_info):
         raise ConnectorError(str(err))
 
 
+def get_endpoint_details_by_macaddress(config, params, connector_info):
+    try:
+        mac_address = params.get('mac_address')
+        endpoint = "/api/endpoint/mac-address/{0}".format(mac_address)
+        response = api_request("GET", endpoint, connector_info, config, params)
+        return response
+    except Exception as err:
+        raise ConnectorError(str(err))
+
+
+def block_endpoint(config, params, connector_info):
+    try:
+        mac_address = params.get('mac_address')
+        payload = {
+            "attributes": {
+                "blacklisted": "true"}
+        }
+        endpoint = "/api/endpoint/mac-address/{0}".format(mac_address)
+        response = api_request("PATCH", endpoint, connector_info, config, params, data=payload)
+        return response
+    except Exception as err:
+        raise ConnectorError(str(err))
+
+
+def execute_api_request(config, params, connector_info):
+    endpoint = params.get('endpoint','')
+    query_params = params.get('query_params',{})
+    method = params.get('method', '')
+    payload = params.get('payload')
+    if not endpoint.startswith('/'):
+        endpoint = f'/{endpoint}'
+    return api_request(method, endpoint, connector_info, config, params=query_params, data=payload)
+
+
+
 operations = {
     "list_guests": list_guests,
     "get_guest_details": get_guest_details,
@@ -205,6 +240,9 @@ operations = {
     "terminate_session": terminate_session,
     "disable_device": disable_device,
     "session_coa_mac": session_coa_mac,
-    "get_device_profile": get_device_profile
+    "get_device_profile": get_device_profile,
+    "get_endpoint_details_by_macaddress": get_endpoint_details_by_macaddress,
+    "block_endpoint": block_endpoint,
+    'execute_api_request': execute_api_request
 
 }

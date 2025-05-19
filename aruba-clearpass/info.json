@@ -2,14 +2,15 @@
   "name": "aruba-clearpass",
   "label": "Aruba ClearPass",
   "description": "Aruba ClearPass is a policy management platform that enables businesses to effortlessly onboard new devices, grant varying access levels, and keep their networks secure. Aruba ClearPass connector performs actions like list guest and guest details, list endpoints and endpoint details etc.",
-  "publisher": "Community",
+  "publisher": "Fortinet ETAC",
   "cs_approved": false,
+  "contributor": "Vincent Schmitt",
   "cs_compatible": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "category": "Network Security",
   "icon_large_name": "medium.png",
   "icon_small_name": "small.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/aruba-clearpass/458/aruba-clearpass-v1-1-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -389,6 +390,104 @@
         }
       ],
       "category": "investigation",
+      "output_schema": {}
+    },
+    {
+      "title": "Get Endpoint Details by MAC Address",
+      "operation": "get_endpoint_details_by_macaddress",
+      "description": "Get detailed information about a specific endpoint by providing its MAC address.",
+      "annotation": "get_endpoint_details_by_macaddress",
+      "category": "investigation",
+      "parameters": [
+        {
+          "title": "MAC Address",
+          "type": "text",
+          "name": "mac_address",
+          "description": "Specify the MAC address for which you want to retrieve detailed information.",
+          "tooltip": "Specify the MAC address for which you want to retrieve detailed information.",
+          "required": true,
+          "visible": true,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "title": "Block Endpoint",
+      "operation": "block_endpoint",
+      "category":"containment",
+      "description": "Block the endpoint based on the provided MAC address by setting the 'blacklisted' attribute to true.",
+      "parameters": [
+        {
+          "title": "MAC Address",
+          "type": "text",
+          "name": "mac_adress",
+          "description": "Specify the MAC address for which you want to block in the blacklisted.",
+          "tooltip": "Specify the MAC address for which you want to block in the blacklisted.",
+          "required": true,
+          "visible": true,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "operation": "execute_api_request",
+      "title": "Execute an API Request",
+      "annotation": "execute_api_request",
+      "description": "Execute any Aruba ClearPass API using the specified API method, endpoint, and payload as input parameters.",
+      "category": "investigation",
+      "handler_method": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "endpoint",
+          "title": "Endpoint",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the Aruba ClearPass REST API endpoint for the action to perform, e.g., '/api/guest' or '/api/session?calculate_count=true' Note: Do not pass the full endpoint path starting with the host or server URL.",
+          "description": "Specify the Aruba ClearPass REST API endpoint for the action to perform, e.g., '/api/guest' or '/api/session?calculate_count=true' Note: Do not pass the full endpoint path starting with the host or server URL."
+        },
+        {
+          "name": "method",
+          "title": "Method",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "value": "GET",
+          "tooltip": "Select the HTTP method Which method you want to execute.",
+          "description": "Select the HTTP method Which method you want to execute.",
+          "options": [
+            "DELETE",
+            "GET",
+            "PATCH",
+            "POST",
+            "PUT"
+          ]
+        },
+        {
+          "title": "Query Parameters",
+          "name": "query_params",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the he Rest API query parameters object in JSON format.",
+          "description": "Specify the he Rest API query parameters object in JSON format."
+        },
+        {
+          "name": "payload",
+          "title": "Payload",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the payload needed for the RESP API call. Use empty brackets if there is no payload.",
+          "description": "Specify the payload needed for the RESP API call. Use empty brackets if there is no payload."
+        }
+      ],
       "output_schema": {}
     }
   ]
