@@ -1,8 +1,9 @@
-"""Copyright start
-  Copyright (C) 2008 - 2025 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end"""
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
 
 import json
 from requests import request, exceptions as req_exceptions
