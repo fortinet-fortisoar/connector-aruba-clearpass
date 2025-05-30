@@ -10,7 +10,7 @@
   "category": "Network Security",
   "icon_large_name": "medium.png",
   "icon_small_name": "small.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.2.0/aruba-clearpass/1082/aruba-clearpass-v1-2-0",
   "configuration": {
     "fields": [
       {
@@ -20,7 +20,7 @@
         "editable": true,
         "visible": true,
         "type": "text",
-        "description": "IP address or FQDN of the Aruba ClearPass server to which you will connect and perform the automated operations."
+        "description": "IP address or FQDN of the Aruba ClearPass server to which to connect and perform the automated operations."
       },
       {
         "title": "Client ID",
@@ -52,7 +52,7 @@
               "visible": true,
               "editable": true,
               "type": "password",
-              "description": "Client Secret field specify the client secret from your Aruba API client app definition. The client secret is required if the API client definition is not configured as a public client."
+              "description": "In the Client Secret field, specify the client secret from your Aruba API client app definition. The client secret is required if the API client definition is not configured as a public client."
             }
           ],
           "Username/Password": [
@@ -63,7 +63,7 @@
               "editable": true,
               "visible": true,
               "type": "text",
-              "description": "In the Username field, enter the username to access the Aruba ClearPass server to which you will connect and perform the automated operations."
+              "description": "Enter the username to access the Aruba ClearPass server to which you will connect and perform the automated operations."
             },
             {
               "title": "Password",
@@ -72,7 +72,7 @@
               "visible": true,
               "editable": true,
               "type": "password",
-              "description": "In the Password field, enter the password to access the Aruba ClearPass server to which you will connect and perform the automated operations."
+              "description": "Enter the password to access the Aruba ClearPass server to which you will connect and perform the automated operations."
             }
           ]
         }
@@ -93,7 +93,7 @@
     {
       "operation": "list_guests",
       "title": "Get List of Guests",
-      "description": "Retrieves the collection of all currently managed guest accounts from Aruba ClearPass.",
+      "description": "Retrieves a collection of all currently managed guest accounts from Aruba ClearPass.",
       "category": "investigation",
       "annotation": "list_guests",
       "enabled": true,
@@ -115,7 +115,8 @@
           "visible": true,
           "type": "text",
           "name": "guest_id",
-          "description": "Guest ID."
+          "tooltip": "Specify the ID of the guest whose details you want to retrieve from Aruba ClearPass.",
+          "description": "Specify the ID of the guest whose details you want to retrieve from Aruba ClearPass."
         }
       ],
       "output_schema": {}
@@ -123,7 +124,7 @@
     {
       "operation": "list_endpoints",
       "title": "List Endpoint",
-      "description": "Retrieves the list of all connected endpoints in Aruba ClearPass.",
+      "description": "Retrieves the list of all connected endpoints on the Aruba ClearPass network.",
       "category": "investigation",
       "annotation": "list_endpoints",
       "enabled": true,
@@ -170,7 +171,8 @@
           "visible": true,
           "type": "text",
           "name": "endpoint_id",
-          "description": "The ID of the endpoint whose details you want to retrieve from Aruba ClearPass. "
+          "description": "Specify the ID of the endpoint whose details you want to retrieve from Aruba ClearPass.",
+          "tooltip": "Specify the ID of the endpoint whose details you want to retrieve from Aruba ClearPass."
         }
       ],
       "output_schema": {
@@ -189,7 +191,7 @@
     {
       "operation": "update_endpoint_status",
       "title": "Update Endpoint Status",
-      "description": "Updates the status of a specific connected endpoint in Aruba ClearPass based on the Endpoint ID and status you have specified.",
+      "description": "Updates the status of a specific connected endpoint in the Aruba ClearPass network based on the Endpoint ID and status you have specified.",
       "category": "investigation",
       "annotation": "update_endpoint_status",
       "enabled": true,
@@ -201,7 +203,8 @@
           "visible": true,
           "type": "text",
           "name": "endpoint_id",
-          "description": "The ID of the endpoint whose status you want to update in Aruba ClearPass."
+          "description": "Specify the ID of the endpoint whose status you want to update in the Aruba ClearPass network.",
+          "tooltip": "Specify the ID of the endpoint whose status you want to update in the Aruba ClearPass network."
         },
         {
           "title": "Endpoint Status",
@@ -216,7 +219,8 @@
           ],
           "value": "Disabled",
           "name": "endpoint_status",
-          "description": "Select the status that you want to update in the specific endpoint in Aruba ClearPass. You can choose from the following options: Known, Unknown, or Disabled."
+          "description": "Select the status that you want to update for the specific endpoint in the Aruba ClearPass network. You can choose from the following options: Known, Unknown, Disabled",
+          "tooltip": "Select the status that you want to update for the specific endpoint in the Aruba ClearPass network. You can choose from the following options: Known, Unknown, Disabled"
         },
         {
           "title": "Description",
@@ -225,7 +229,8 @@
           "visible": true,
           "type": "text",
           "name": "description",
-          "description": "Specify that description that you want to add while updating the status of the specific endpoint in Aruba ClearPass."
+          "description": "(Optional) Specify a description to add while updating the status of the specific endpoint in the Aruba ClearPass network.",
+          "tooltip": "Specify a description to add while updating the status of the specific endpoint in the Aruba ClearPass network."
         }
       ],
       "output_schema": {}
@@ -233,7 +238,7 @@
     {
       "operation": "list_sessions",
       "title": "List Sessions",
-      "description": "Retrieves a list of all active sessions from Aruba ClearPass.",
+      "description": "Retrieves a list of all active sessions from the Aruba ClearPass network.",
       "category": "investigation",
       "annotation": "list_sessions",
       "enabled": true,
@@ -243,6 +248,8 @@
           "type": "text",
           "name": "filter",
           "required": false,
+          "description":"(Optional) Specify a criterion to filter the list of sessions retrieved from the Aruba ClearPass network. \nFor filter syntax, refer to the Aruba ClearPass REST API filtering https://developer.arubanetworks.com/cppm/docs/rest-api-filtering.",
+          "tooltip":"Specify a criterion to filter the list of sessions retrieved from the Aruba ClearPass network. \nFor filter syntax, refer to the Aruba ClearPass REST API filtering https://developer.arubanetworks.com/cppm/docs/rest-api-filtering.",
           "visible": true,
           "editable": true
         }
@@ -318,7 +325,8 @@
           "visible": true,
           "type": "text",
           "name": "session_id",
-          "description": "The ID of the session that you want to terminate from the Aruba ClearPass network."
+          "description": "Specify the ID of the session to terminate from the Aruba ClearPass network.",
+          "tooltip": "Specify the ID of the session to terminate from the Aruba ClearPass network."
         }
       ],
       "output_schema": {}
@@ -337,7 +345,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "(Optional) Specify the MAC address of the device to disable from the Aruba ClearPass."
+          "description": "(Optional) Specify the MAC address of the device to disable from the Aruba ClearPass.",
+          "tooltip": "(Optional) Specify the MAC address of the device to disable from the Aruba ClearPass."
         }
       ],
       "category": "remediation",
@@ -357,7 +366,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "(Optional) Specify the MAC address to identify the Aruba ClearPass session."
+          "description": "(Optional) Specify the MAC address to identify the Aruba ClearPass session.",
+          "tooltip": "Specify the MAC address to identify the Aruba ClearPass session."
         },
         {
           "title": "COA Profile",
@@ -366,7 +376,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "(Optional) Specify the COA Profile to send a RADIUS COA to the Aruba ClearPass network."
+          "description": "Specify the MAC address to identify the Aruba ClearPass session.",
+          "tooltip": "Specify the MAC address to identify the Aruba ClearPass session."
         }
       ],
       "category": "remediation",
@@ -386,7 +397,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Specify the MAC or the IP Address to get attributes of a device from the Aruba ClearPass network."
+          "description": "Specify the MAC or the IP Address to get attributes of a device from the Aruba ClearPass network.",
+          "tooltip": "Specify the MAC or the IP Address to get attributes of a device from the Aruba ClearPass network."
         }
       ],
       "category": "investigation",
@@ -395,7 +407,7 @@
     {
       "title": "Get Endpoint Details by MAC Address",
       "operation": "get_endpoint_details_by_macaddress",
-      "description": "Get detailed information about a specific endpoint by providing its MAC address.",
+      "description": "Retrieves detailed information about a specific endpoint from Aruba ClearPass based on the MAC address you have specified.",
       "annotation": "get_endpoint_details_by_macaddress",
       "category": "investigation",
       "parameters": [
@@ -403,8 +415,8 @@
           "title": "MAC Address",
           "type": "text",
           "name": "mac_address",
-          "description": "Specify the MAC address for which you want to retrieve detailed information.",
-          "tooltip": "Specify the MAC address for which you want to retrieve detailed information.",
+          "description": "Specify the MAC address of the endpoint for which you want to retrieve detailed information from Aruba ClearPass.",
+          "tooltip": "Specify the MAC address of the endpoint for which you want to retrieve detailed information from Aruba ClearPass.",
           "required": true,
           "visible": true,
           "editable": true
@@ -415,14 +427,14 @@
       "title": "Block Endpoint",
       "operation": "block_endpoint",
       "category":"containment",
-      "description": "Block the endpoint based on the provided MAC address by setting the 'blacklisted' attribute to true.",
+      "description": "Blocks the endpoint based on the MAC address you have specified by setting the 'blacklisted' attribute to true.",
       "parameters": [
         {
           "title": "MAC Address",
           "type": "text",
           "name": "mac_adress",
-          "description": "Specify the MAC address for which you want to block in the blacklisted.",
-          "tooltip": "Specify the MAC address for which you want to block in the blacklisted.",
+          "description": "Specify the MAC address of the endpoint that you want to block by setting its 'blacklisted' attribute to 'true' in Aruba ClearPass.",
+          "tooltip": "Specify the MAC address of the endpoint that you want to block by setting its 'blacklisted' attribute to 'true' in Aruba ClearPass.",
           "required": true,
           "visible": true,
           "editable": true
@@ -433,9 +445,8 @@
       "operation": "execute_api_request",
       "title": "Execute an API Request",
       "annotation": "execute_api_request",
-      "description": "Execute any Aruba ClearPass API using the specified API method, endpoint, and payload as input parameters.",
+      "description": "Executes any Aruba ClearPass API using the specified API method, endpoint, query parameters, and payload as input parameters.",
       "category": "investigation",
-      "handler_method": true,
       "visible": true,
       "enabled": true,
       "parameters": [
@@ -446,8 +457,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the Aruba ClearPass REST API endpoint for the action to perform, e.g., '/api/guest' or '/api/session?calculate_count=true' Note: Do not pass the full endpoint path starting with the host or server URL.",
-          "description": "Specify the Aruba ClearPass REST API endpoint for the action to perform, e.g., '/api/guest' or '/api/session?calculate_count=true' Note: Do not pass the full endpoint path starting with the host or server URL."
+          "tooltip": "Specify the Aruba ClearPass REST API endpoint for the action you want to perform. For example, '/api/guest' or '/api/session?calculate_count=true' Note: Do not pass the full endpoint path, which starts with the host or server URL.",
+          "description": "Specify the Aruba ClearPass REST API endpoint for the action you want to perform. For example, '/api/guest' or '/api/session?calculate_count=true' Note: Do not pass the full endpoint path, which starts with the host or server URL."
         },
         {
           "name": "method",
@@ -457,8 +468,8 @@
           "visible": true,
           "required": true,
           "value": "GET",
-          "tooltip": "Select the HTTP method Which method you want to execute.",
-          "description": "Select the HTTP method Which method you want to execute.",
+          "tooltip": "Select the HTTP method that you want to use to execute the API request.",
+          "description": "Select the HTTP method that you want to use to execute the API request.",
           "options": [
             "DELETE",
             "GET",
@@ -474,8 +485,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the he Rest API query parameters object in JSON format.",
-          "description": "Specify the he Rest API query parameters object in JSON format."
+          "tooltip": "Specify the REST API query parameters object in JSON format.",
+          "description": "(Optional) Specify the REST API query parameters object in JSON format."
         },
         {
           "name": "payload",
@@ -484,7 +495,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the payload needed for the RESP API call. Use empty brackets if there is no payload.",
+          "tooltip": "(Optional) Specify the payload needed for the RESP API call. Use empty brackets if there is no payload.",
           "description": "Specify the payload needed for the RESP API call. Use empty brackets if there is no payload."
         }
       ],
